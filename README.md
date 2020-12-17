@@ -11,7 +11,7 @@ On the trips INDEX page the user will see their trips.  They will also see navig
 
 If there are no trips on the INDEX page then the user will see text that says no trips are available to view, please create a trip.  If the user clicks on the new trip button then they will be taken to the NEW trip page.
 
-The NEW trip page is a form that will collect the following information: trip start date, trip end date, any media files the use wants to upload, notes on the media being uploaded, activities engaged in on the trip, notes, location, budget, and information for any new friends made.  A submit button on the NEW page will enter the data into the database and take the user back to the INDEX page.
+The NEW trip page is a form that will collect the following information: trip start date, trip end date, any media files the use wants to upload, notes on the media being uploaded, activities engaged in on the trip, notes, location, and budget.  A submit button on the NEW page will enter the data into the database and take the user back to the INDEX page.
 
 When a user selects a trip from the INDEX page they will be taken to the trip SHOW page.  On the SHOW page the user will see the details of the trip.  The user will also see buttons that will allow them to edit or delete the trip.
 
@@ -29,6 +29,9 @@ If the user is on the user SHOW page and clicks on the delete button, the user a
 
 # MVP Pitch
 This will be a travel blog that allows users to log in using unique credentials.  Once in the website the users can create, read, updated, and delete trips they have taken.  The mongo database will use four models, Traveler, Trip, User, and Picture.  The Traveler and Trip will be referenced in each other.  User will be referenced in Traveler.  Picture will be embedded in Trip.     
+
+# Entity Relationship Diagram
+![ERD](erd.svg)
 
 # Icebox
 - Share blogs with other couples and merge trips or be able to link to another persons blog and or send a link request.
