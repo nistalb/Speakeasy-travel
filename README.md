@@ -33,6 +33,9 @@ This will be a travel blog that allows users to log in using unique credentials.
 # Entity Relationship Diagram
 ![ERD](erd.svg)
 
+# Wireframe
+![wireframe](wireframe.svg)
+
 # Icebox
 - Share blogs with other couples and merge trips or be able to link to another persons blog and or send a link request.
 - family friendly
