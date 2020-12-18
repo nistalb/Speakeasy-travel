@@ -10,16 +10,16 @@ const db = require("../models");
 
 //index
 router.get("/", async (req, res) => {
-    res.send("hello");
-    /* try {
+   
+    try {
         const traveler = await db.Traveler.find( {createdBy: req.session.currentUser.id});
 
         const context = {traveler: traveler};
         return res.render("traveler/index", context);
     } catch (err) {
         return res.send(err);
-    }; */
-})
+    }; 
+});
 
 //new
 router.get("/new", (req, res) => {
