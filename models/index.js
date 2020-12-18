@@ -25,5 +25,7 @@ mongoose.connection.on("disconnected", function(){
 
 module.exports = {
     Traveler: require("./Traveler"),
-    User: require("./User")
+    User: require("./User"),
+    Picture: require("./Picture"),
+    Trip: require("./Trip")
 };
