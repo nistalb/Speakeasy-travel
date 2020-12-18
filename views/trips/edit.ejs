@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trips edit</title>
+</head>
+<body>
+    <h1>trips edit page</h1>
+
+
+    <a href="/trips">trips</a>
+    <h2>Edit <%= .title %></h2>
+      <form action="/articles/<%= article._id %>?_method=PUT" method="POST">
+        <p>
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            value="<%= article.title %>"
+          />
+        </p>
+        <p>
+          <textarea type="text" name="body" placeholder="Body">
+<%= article.body %></textarea
+          >
+        </p>
+        <input type="submit" value="Update Article" />
+      </form>
+</body>
+</html>
