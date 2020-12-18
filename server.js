@@ -42,6 +42,22 @@ app.use(
     })
 );
 
+//logger
+app.use(function(req,res,next){
+
+    console.log(req.session);
+    next();
+});
+
+// user authentication middleware
+app.use(function(req,res,next){
+
+    app.locals.user = req.session.currentUser;
+    next();
+});
+
+const authRequired = require("./middleware/authRequired");
+
 /* == Routes/Controllers == */
 
 // Home Routes
