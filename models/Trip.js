@@ -11,7 +11,10 @@ const tripSchema = mongoose.Schema(
         location: String,
         budget: Number,
         pictures: [embed, Picture],
-        ref: "Traveler"
+        createdTrip: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        }
 
     },
     {
