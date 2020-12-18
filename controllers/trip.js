@@ -34,7 +34,7 @@ router.get("/:id/edit", (req, res) =>{
 });
 
 //update
-router.push("/:id", (req, res) => {
+router.put("/:id", (req, res) => {
 
 });
 
