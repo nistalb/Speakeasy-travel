@@ -64,16 +64,18 @@ router.post("/", (req, res) => {
 });
 
 //show
-router.get("/:id", (req, res) => {
-    db.Trip
-    .findById(req.params.id)
-    .populate("author")
-    .exec(function (err, foundTrip){
-        if(err) return res.send(err);
+router.get("/:id", async (req, res) => {
+    try {
+        const foundTrip = await db.Trip.findById({
+            createdBy: req.session.currentUser.id});
+
         const context = {trip: foundTrip};
-        res.render("trips/show", context);
-    });
+        return res.render("trips/show", context);
+    } catch (err) {
+        return res.send(err);
+    };
 });
+
 
 //edit
 router.get("/:id/edit", (req, res) =>{
