@@ -10,7 +10,6 @@ const tripSchema = mongoose.Schema(
         notes: String,
         location: String,
         budget: Number,
-        pictures: [embed, Picture],
         createdTrip: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
