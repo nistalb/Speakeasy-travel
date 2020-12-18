@@ -8,25 +8,38 @@ const db = require("../models");
 
 /* Create routes */
 
+//index
+router.get("/", async (req, res) => {
+    res.send("hello");
+    /* try {
+        const traveler = await db.Traveler.find( {createdBy: req.session.currentUser.id});
+
+        const context = {traveler: traveler};
+        return res.render("traveler/index", context);
+    } catch (err) {
+        return res.send(err);
+    }; */
+})
+
 //new
 router.get("/new", (req, res) => {
-    res.render("traveler/new");     
+   res.render("traveler/new");     
 });
 
 //create
-router.post("/new", async (req, res) => {
+router.post("/", async (req, res) => {
     
-    try {
-        req.body.createdBy = req.session.currentUser.id;   
+     try {
+        req.body.createdBy = req.session.currentUser.id;  
         await db.Traveler.create(req.body);
-        return res.redirect("/show");
+        return res.redirect("/traveler");
     } catch (err) {
         return res.send(err);
     };
 });
 
 //show
-router.get("/", async (req, res) => {
+router.get("/:id", async (req, res) => {
     
     try {
         const foundTraveler = await db.Traveler.findById( {createdBy: req.session.currentUser.id} );
@@ -40,7 +53,7 @@ router.get("/", async (req, res) => {
 });
 
 //edit
-router.get("/edit", async (req, res) =>{
+router.get("/:id/edit", async (req, res) =>{
 
     try {
         const foundTraveler = await db.Traveler.findById( {createdBy: req.session.currentUser.id} );
@@ -53,7 +66,7 @@ router.get("/edit", async (req, res) =>{
 });
 
 //update
-router.put("/", async (req, res) => {
+router.put("/:id", async (req, res) => {
 
     try {
         await db.Traveler.findByIdAndUpdate(req.params.id, req.body, {new: true});
@@ -64,7 +77,7 @@ router.put("/", async (req, res) => {
 });
 
 //delete
-router.delete("/", (req, res) => {
+router.delete("/:id", (req, res) => {
 
 });
 

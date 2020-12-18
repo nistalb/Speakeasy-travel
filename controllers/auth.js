@@ -27,7 +27,7 @@ router.post("/register", async (req, res) => {
         req.body.password = hash;
         const newUser = await db.User.create(req.body);
 
-        return res.redirect("traveler/new");
+        return res.redirect("/login");
 
     } catch (err) {
         return res.send(err);
@@ -43,7 +43,7 @@ router.get("/login", (req, res) => {
 router.post("/login", async (req, res) => {
 
     try {
-        const foundUser = await db.User.findOne({ eamil: req.body.email });
+        const foundUser = await db.User.findOne({ email: req.body.email });
 
         if (!foundUser) return res.render("auth/login");
 
@@ -57,7 +57,7 @@ router.post("/login", async (req, res) => {
             username: foundUser.username
         };
 
-        res.redirect("/");
+        res.redirect("/traveler");
 
     } catch (err) {
         return res.send(err);
