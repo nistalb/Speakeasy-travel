@@ -4,18 +4,25 @@ const express = require("express");
 const router = express.Router();
 
 //require the data
-//const db = require("./models");
+const db = require("./models");
 
 /* Create routes */
 
 //new
 router.get("/new", (req, res) => {
-    res.send("You are on the new traveler page")
+    //res.render("travelers/new");     until the view is created
 });
 
 //create
-router.post("/new", (req, res) => {
+router.post("/new", async (req, res) => {
     
+    try {
+        //req.body.createdBy = req.session.currentUser.id;
+        await db.Traveler.create(req.body);
+        return res.redirect("/");
+    } catch (err) {
+        return res.send(err);
+    };
 });
 
 //show
