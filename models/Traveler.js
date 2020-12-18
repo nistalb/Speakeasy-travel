@@ -12,7 +12,7 @@ const travelerSchema = new mongoose.Schema({
         ref: "User"
     }
 },
-{timestamp: true}
+{ timestamps: true }
 );
 
 const Traveler = mongoose.model("Traveler", travelerSchema);
