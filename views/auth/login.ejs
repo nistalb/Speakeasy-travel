@@ -7,5 +7,16 @@
 </head>
 <body>
     <h1>You are on the login page!</h1>
+
+    <form action="/login" method="post">
+        <p>
+            <input type="email" name="email" placeholder="email@host.com" required>
+        </p>
+        <p>
+            <input type="password" name="password" placeholder="password" required minlength="8">
+        </p>
+            <input type="submit" value="Login">
+        </p>
+    </form>
 </body>
 </html>
