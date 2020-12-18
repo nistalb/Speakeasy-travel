@@ -1,6 +1,8 @@
 /* == External Modules == */
 const express = require("express");
 const methodOverride = require("method-override");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 /* == Internal Modules == */
 const controllers = require("./controllers");
@@ -24,6 +26,21 @@ app.use(express.urlencoded({extended: true}));
 // method override middleware
 app.use(methodOverride("_method"));
 
+//session
+app.use(
+    session({
+        //set the store to the MongoStore we required
+        store: new MongoStore({
+            url: "mongodb://localhost:27017/speakeasydb"
+        }),
+        secret: "I know what you did last summer",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 24 * 7 * 3
+        }
+    })
+);
 
 /* == Routes/Controllers == */
 
