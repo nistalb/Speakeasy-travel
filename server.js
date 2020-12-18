@@ -33,11 +33,17 @@ app.get("/", function(req,res){
     res.render("home");
 });
 
-// author controller
-// app.use("/authors", controllers.authors);
+//user controller
+app.use("/", controllers.user);
 
-// article controller
-// app.use("/articles", controllers.articles);
+// traveler controller
+app.use("/traveler", controllers.traveler);
+
+// trip controller
+app.use("/trip", controllers.trip);
+
+//picture controller
+app.use("/picture", controllers.picture)
 
 /* == Server Listener == */
 app.listen(PORT, function(){
