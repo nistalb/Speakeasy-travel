@@ -17,7 +17,7 @@ router.get("/new", (req, res) => {
 router.post("/new", async (req, res) => {
     
     try {
-        //req.body.createdBy = req.session.currentUser.id;   for using session
+        req.body.createdBy = req.session.currentUser.id;   
         await db.Traveler.create(req.body);
         return res.redirect("/");
     } catch (err) {
