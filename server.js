@@ -33,8 +33,8 @@ app.get("/", function(req,res){
     res.render("home");
 });
 
-//user controller
-app.use("/", controllers.user);
+//auth controller
+app.use("/", controllers.auth);
 
 // traveler controller
 app.use("/traveler", controllers.traveler);
