@@ -1,5 +1,6 @@
 //require express
 const express = require("express");
+const { db } = require("../models/Trip");
 
 const router = express.Router();
 
@@ -10,17 +11,34 @@ const router = express.Router();
 
 //new
 router.get("/new", (req, res) => {
-    res.send("You are on the new picture page")
+    res.render("pictures/new");
 });
 
 //create
-router.post("/new", (req, res) => {
+router.post("/new", async (req, res) => {
+    try {
+        req.body.createdBy = req.session.currentUser.id
+        await db.Picture.create(req.body);
+        return res.redirect("/travelers");
+
+    } catch(err){
+        return res.send(err);
+    }
     
 });
 
 //show
-router.get("/:id", (req, res) => {
-    res.send("you are on the picture show page")
+router.get("/:id", async (req, res) => {
+    try {
+        const foundPic = await db.Picture.findById(req.params.id);
+
+        const context = {picture: foundPic};
+        return res.render("pictures/show", context);
+
+    
+    } catch(err) {
+        return res.send(err);
+    }
 });
 
 //edit
@@ -34,7 +52,15 @@ router.put("/:id", (req, res) => {
 });
 
 //delete
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
+    try {
+        const deletedPicture = await db.Picture.findByIdAndDelete(req.params.id);
+        await db.Picture.remove({picture: deletedPicture._id});
+        return res.redirect("/pictures")
+
+    } catch (err) {
+        return res.send(err);
+    }
 
 });
 
