@@ -7,5 +7,11 @@
 </head>
 <body>
     <h1>You are on the traveler edit page</h1>
+
+    <form action="/traveler?_method=PUT" method="POST">
+        <input type="text" name="name" value = "<%= traveler.name %> ">
+        <input type="text" name="bio" value="<%= traveler.bio %> ">
+        <input type="submit" value="Update">
+    </form>
 </body>
 </html>
