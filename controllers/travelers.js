@@ -4,20 +4,20 @@ const express = require("express");
 const router = express.Router();
 
 //require the data
-const db = require("./models");
+const db = require("../models");
 
 /* Create routes */
 
 //new
 router.get("/new", (req, res) => {
-    //res.render("travelers/new");     until the view is created
+    res.render("travelers/new");     
 });
 
 //create
 router.post("/new", async (req, res) => {
     
     try {
-        //req.body.createdBy = req.session.currentUser.id;
+        //req.body.createdBy = req.session.currentUser.id;   for using session
         await db.Traveler.create(req.body);
         return res.redirect("/");
     } catch (err) {
@@ -26,22 +26,45 @@ router.post("/new", async (req, res) => {
 });
 
 //show
-router.get("/:id", (req, res) => {
-    res.send("you are on the index page")
+router.get("/", async (req, res) => {
+    
+    try {
+        const foundTraveler = await db.Traveler.findById( {createdBy: req.session.currentUser.id} );
+
+        const context = {traveler: foundTraveler};
+        return res.render("travelers/show", context);
+
+    } catch (err) {
+        return res.send(err);
+    };
 });
 
 //edit
-router.get("/:id/edit", (req, res) =>{
+router.get("/edit", async (req, res) =>{
 
+    try {
+        const foundTraveler = await db.Traveler.findById( {createdBy: req.session.currentUser.id} );
+        
+        const context = { traveler: foundTraveler };
+        return res.render("travelers/edit", context);
+    } catch (err) {
+        return res.send(err);
+    };
 });
 
 //update
-router.put("/:id", (req, res) => {
+router.put("/", async (req, res) => {
 
+    try {
+        await db.Traveler.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        return res.redirect(`/`)
+    } catch (err) {
+        return res.send(err);
+    };
 });
 
 //delete
-router.delete("/:id", (req, res) => {
+router.delete("/", (req, res) => {
 
 });
 

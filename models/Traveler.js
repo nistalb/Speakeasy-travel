@@ -7,6 +7,10 @@ const travelerSchema = new mongoose.Schema({
     bio: String,
     address: {street: String, city: String, state: String, country: String},
     //trips: []   add reference from trips
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }
 },
 {timestamp: true}
 );
