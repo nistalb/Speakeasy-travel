@@ -33,7 +33,7 @@ router.get("/:id", async (req, res) => {
         const foundPic = await db.Picture.findById(req.params.id);
 
         const context = {picture: foundPic};
-        return res.render("pictures/show", context);
+        return res.render("picture/show", context);
 
     
     } catch(err) {
