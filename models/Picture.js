@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 // schema
-const pictureSchema = mongoose.Schema(
+const pictureSchema = new mongoose.Schema(
     {
         name: String,
         description: String,
