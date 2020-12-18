@@ -1,6 +1,6 @@
 module.exports = {
-    traveler: require ("./traveler"),
-    picture: require("./picture"),
-    trip: require("./trip"),
-    user: require("./user")
+    traveler: require ("./travelers"),
+    picture: require("./pictures"),
+    trip: require("./trips"),
+    user: require("./users")
 };
