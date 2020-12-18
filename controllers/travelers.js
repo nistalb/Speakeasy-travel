@@ -10,7 +10,7 @@ const db = require("../models");
 
 //new
 router.get("/new", (req, res) => {
-    res.render("travelers/new");     
+    res.render("traveler/new");     
 });
 
 //create
@@ -19,7 +19,7 @@ router.post("/new", async (req, res) => {
     try {
         req.body.createdBy = req.session.currentUser.id;   
         await db.Traveler.create(req.body);
-        return res.redirect("/");
+        return res.redirect("/show");
     } catch (err) {
         return res.send(err);
     };
@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
         const foundTraveler = await db.Traveler.findById( {createdBy: req.session.currentUser.id} );
 
         const context = {traveler: foundTraveler};
-        return res.render("travelers/show", context);
+        return res.render("traveler/show", context);
 
     } catch (err) {
         return res.send(err);
@@ -46,7 +46,7 @@ router.get("/edit", async (req, res) =>{
         const foundTraveler = await db.Traveler.findById( {createdBy: req.session.currentUser.id} );
         
         const context = { traveler: foundTraveler };
-        return res.render("travelers/edit", context);
+        return res.render("traveler/edit", context);
     } catch (err) {
         return res.send(err);
     };
