@@ -40,13 +40,34 @@ router.get("/login", (req, res) => {
 });
 
 //verify login information
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
 
+    try {
+        const foundUser = await db.User.findOne({ eamil: req.body.email });
+
+        if (!foundUser) return res.render("auth/login");
+
+        const match = await bcrypt.compare(req.body.password, foundUser.password);
+
+        if (!match) return res.render("auth/login");
+
+        //create user session
+        req.session.currentUser = {
+            id: foundUser._id,
+            username: foundUser.username
+        };
+
+        res.redirect("/");
+
+    } catch (err) {
+        return res.send(err);
+    };
 })
 
 //delete
-router.delete("/logout", (req, res) => {
-
+router.delete("/logout", async (req, res) => {
+    await req.session.destroy();
+    res.redirect("/");
 });
 
 
