@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trips index</title>
+</head>
+<body>
+    <h1>trips index</h1>
+
+    <ul>
+        <li>
+            <li>
+                <a href="/traveler">Traveler page</a>
+              </li>
+        </li>
+    </ul>
+    <main>
+        <h2>List of trips</h2>
+        <ul>
+          <% trips.forEach(article => { %>
+          <li>
+            <a href="/trips/<%= trip._id %>"> <%= trip.title %> </a>
+          </li>
+          <% }) %>
+        </ul>
+  
+        <% if(trips.length === 0) { %>
+        <p>There are no trips available yet.</p>
+        <% } %>
+      </main>
+
+   
+      
+</body>
+</html>

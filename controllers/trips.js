@@ -66,16 +66,16 @@ router.post("/", (req, res) => {
 //show
 router.get("/:id", async (req, res) => {
     try {
-        const foundTrip = await db.Trip.findById({
-            createdBy: req.session.currentUser.id});
+        const foundTrip = await db.Trip.findById(req.params.id);
 
-        const context = {trip: foundTrip};
+        const context = {picture: foundPic};
         return res.render("trips/show", context);
-    } catch (err) {
-        return res.send(err);
-    };
-});
 
+    
+    } catch(err) {
+        return res.send(err);
+    }
+});
 
 //edit
 router.get("/:id/edit", (req, res) =>{
