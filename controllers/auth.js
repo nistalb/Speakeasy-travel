@@ -13,6 +13,7 @@ router.get("/register", (req, res) => {
     res.render("auth/register");
 })
 
+//POST registration
 router.post("/register", async (req, res) => {
     
     try{
@@ -35,7 +36,7 @@ router.post("/register", async (req, res) => {
 
 //login
 router.get("/login", (req, res) => {
-    res.send("on the login page")
+    res.render("auth/login");
 });
 
 //verify login information
