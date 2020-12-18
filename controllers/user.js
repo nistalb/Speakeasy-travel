@@ -8,19 +8,16 @@ const db = require("./models");
 
 /* Create routes */
 
-//index
+//register
+router.get("/register", (req, res) => {
+    res.send("On the register page")
+});
 
-//new
-
-//create
-
-//show
-
-//edit
-
-//update
+//login
 
 //delete
+
+
 
 //export router
 module.exports = router;

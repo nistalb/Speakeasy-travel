@@ -1,5 +1,5 @@
 module.exports = {
-    traveler: require (".traveler"),
+    traveler: require ("./traveler"),
     picture: require("./picture"),
     trip: require("./trip"),
     user: require("./trip")
