@@ -56,8 +56,7 @@ router.get("/:id/edit", async (req, res) =>{
 router.put("/:id", async (req, res) => {
 
     try {
-        console.log(req.body);
-        console.log(req.params.id)
+        
         await db.Traveler.findByIdAndUpdate(req.params.id, req.body, {new: true});
         return res.redirect("/traveler")
     } catch (err) {
@@ -66,8 +65,16 @@ router.put("/:id", async (req, res) => {
 });
 
 //delete
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
 
+    try {
+        console.log(req.params.id);
+        await db.Traveler.findByIdAndDelete(req.params.id);
+        return res.redirect("/");
+
+    } catch (err) {
+        return res.send(err);
+    };
 });
 
 //export router
