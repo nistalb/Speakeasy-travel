@@ -9,9 +9,31 @@
     <h1>You are on the traveler edit page</h1>
 
     <form action="/traveler/<%= traveler._id %>?_method=PUT" method="POST">
-        <input type="text" name="name" value = "<%= traveler.name %> ">
-        <input type="text" name="bio" value="<%= traveler.bio %> ">
+        <p>
+            <input type="text" name="name" value = "<%= traveler.name %> ">
+        </p>
+        <p>
+            <input type="text" name="bio" value="<%= traveler.bio %> ">
+        </p>
+        <p>
+            <input type="text" name="address.street" value = "<%= traveler.address.street %> ">
+        </p>
+        <p>
+            <input type="text" name="address.city" value = "<%= traveler.address.city %> ">
+        </p>
+        <p>
+            <input type="text" name="address.state" value = "<%= traveler.address.state %> ">
+        </p>
+        <p>
+            <input type="text" name="address.country" value = "<%= traveler.address.country %> ">
+        </p>
+
         <input type="submit" value="Update">
     </form>
 </body>
 </html>
+
+
+
+
+

@@ -6,14 +6,22 @@
     <title>Document</title>
 </head>
 <body>
+    <form action="/logout?_method=DELETE" method="POST">
+        <input type="submit" value="logout">
+    </form>
     <h1>you are on the index page</h1>
         
         <% if (!traveler.length) { %>
             <a href="/traveler/new">Enter New User Information</a>
         <% } else {%>
     
-        <p><%= traveler[0].name %> </p>
-        <p><%= traveler[0].bio %> </p>
+        <p>Name: <%= traveler[0].name %> </p>
+        <p>Bio: <%= traveler[0].bio %> </p>
+        <p>Street Address: <%= traveler[0].address.street %> </p>
+        <p>City: <%= traveler[0].address.city %> </p>
+        <p>State: <%= traveler[0].address.state %> </p>
+        <p>Country: <%= traveler[0].address.country %> </p>
+
 
         <a href="/traveler/<%= traveler[0]._id %>/edit ">Edit</a>
         <form action="/traveler/<%= traveler[0]._id %>?_method=DELETE" method=POST>
