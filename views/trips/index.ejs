@@ -16,14 +16,14 @@
     <main>
         <h2>List of trips</h2>
         <ul>
-          <% trips.forEach( => { %>
+          <% trip.forEach(trip => { %>
           <li>
             <a href="/trips/<%= trip._id %>"> <%= trip.name %> </a>
           </li>
           <% }) %>
         </ul>
   
-        <% if(trips.length === 0) { %>
+        <% if(trip.length === 0) { %>
         <p>There are no trips available yet.</p>
         <% } %>
       </main>
