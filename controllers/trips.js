@@ -25,7 +25,7 @@ const db = require("../models");
 //index
 router.get("/", async (req, res) => {
     try {
-        const trips = await db.Trip.find( {createdBy: req.session.currentUser.id});
+        const trip = await db.Trip.find( {createdBy: req.session.currentUser.id});
 
         const context = {trip: trip};
         console.log(context);
