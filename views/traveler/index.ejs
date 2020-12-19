@@ -16,6 +16,10 @@
         <p><%= traveler[0].bio %> </p>
 
         <a href="/traveler/<%= traveler[0]._id %>/edit ">Edit</a>
+        <form action="/traveler/<%= traveler[0]._id %>?_method=DELETE" method=POST>
+            <input type="submit" value="Delete">
+        </form>
+        
         <% } %> 
 </body>
 </html>
