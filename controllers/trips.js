@@ -23,15 +23,16 @@ const db = require("../models");
 /* Create routes */
 
 //index
-router.get("/", (req, res) => {
-    db.Trip.find({}, function(error, foundTrips){
-        if (error) return res.send(error);
+router.get("/", async (req, res) => {
+    try {
+        const trips = await db.Trip.find( {createdBy: req.session.currentUser.id});
 
-        const context = {
-            trips: foundTrips,
-        };
-        res.render("trips/index", context);
-    });
+        const context = {trip: trip};
+        console.log(context);
+        return res.render("trips/index", context);
+    } catch (err) {
+        return res.send(err);
+    }; 
   
 });
 
