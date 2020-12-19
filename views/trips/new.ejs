@@ -26,19 +26,6 @@
             <p>
                 <input type="date" name="dateEnd" placeholder="July 2, 2020"></input>
             </p>
-
-            <p>
-                <select name ='createdTrip'>
-                  <option default>Select an Traveler</option>
-        
-                 <% traveler.forEach ( traveler => { %>
-                  <option value="<%= traveler._id %>">
-                    <%= traveler.name %>
-                  </option>
-                 <% }) %>
-                </select>
-                </p>
-
             <p>
                 <input type="submit" value="Submit">
             </p>

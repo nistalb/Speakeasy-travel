@@ -26,7 +26,7 @@ router.get("/new", (req, res) => {
    res.render("traveler/new");     
 });
 
-//created
+//create
 router.post("/", async (req, res) => {
     
      try {

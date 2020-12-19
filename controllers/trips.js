@@ -26,7 +26,7 @@ const db = require("../models");
 router.get("/", async (req, res) => {
     
     try {
-        const allTrips = await db.Trip.find({});
+        const allTrips = await db.Trip.find({createdBy: req.session.currentUser.id});
 
         const context = {trip: allTrips};
         console.log(context);
@@ -40,59 +40,34 @@ router.get("/", async (req, res) => {
 //new
 router.get("/new", (req, res) => {
     
-    db.Traveler.find({createdBy: req.session.currentUser.id}, function(err, foundTraveler){
-        if (err) return res.send(err);
+    res.render("trips/new");
+}); 
 
-        const context = {
-            traveler: foundTraveler,
-        };  
-        res.render("trips/new", context);
-     }); 
-});
 
 //create
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     
-    db.Trip.create(req.body, (err, createdTrip) => {
-        if (err) return res.send(err);
-        console.log(createdTrip);
-
-        db.Traveler.findById(createdTrip.cereatedTrip).exec(function(err, foundTraveler){
-            if (err) return res.send(err)
-            console.log(foundTraveler);
-            foundTraveler.trips.push(createdTrip);
-            foundTraveler.save();
-
-            return res.redirect("/trip");
-        });
-    })
-
-    /* try {
-        req.body.createdTrip = 
-        db.Trip.create(req.body, function(err, createdTrip){
-        if (err) return res.send(err);
-        console.log(createdTrip);
-        db.Traveler.findById(createdTrip.trips).exec(function(err, foundTraveler){
-            if(err) return res.send(err);
-        } catch (err) {
-            return res.send(err)
-        } */
-    
-    
+    try{
+        req.body.createdBy = req.session.currentUser.id;
+        await db.Trip.create(req.body);
+        return res.redirect("/trip");
+    } catch (err) {
+        return res.send (err)
+    };
 });
 
 //show
 router.get("/:id", async (req, res) => {
+    
     try {
         const foundTrip = await db.Trip.findById(req.params.id);
 
-        const context = {picture: foundPic};
+        const context = {trip: foundTrip};
         return res.render("trips/show", context);
 
-    
     } catch(err) {
         return res.send(err);
-    }
+    };
 });
 
 //edit
