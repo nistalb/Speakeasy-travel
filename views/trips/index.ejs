@@ -10,17 +10,15 @@
 
     <ul>
         <li>
-            <li>
                 <a href="/traveler">Traveler page</a>
-              </li>
         </li>
     </ul>
     <main>
         <h2>List of trips</h2>
         <ul>
-          <% trips.forEach(article => { %>
+          <% trips.forEach( => { %>
           <li>
-            <a href="/trips/<%= trip._id %>"> <%= trip.title %> </a>
+            <a href="/trips/<%= trip._id %>"> <%= trip.name %> </a>
           </li>
           <% }) %>
         </ul>
