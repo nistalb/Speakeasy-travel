@@ -71,25 +71,27 @@ router.get("/:id", async (req, res) => {
 });
 
 //edit
-router.get("/:id/edit", (req, res) =>{
+router.get("/:id/edit", async (req, res) =>{
 
-    db.Trip.findById(req.params.id, function(err, foundTrip){
-        if (err) return res.send(err);
-        console.log(foundTrip);
-        const context = {trip: foundTrip};
-        res.render("trips/edit", context);
-    });
-
+    try{
+        const foundTrip = await db.Trip.findById(req.params.id);
+        const context = { trip: foundTrip };
+        return res.render("trips/edit", context);
+    } catch (err) {
+        return res.send(err)
+    };
 });
 
 //update
-router.put("/:id",  async (req, res) => {
+router.put("/:id", async (req, res) => {
     
     try {
         console.log(req.body);
         console.log(req.params.id);
         const updatedTrip = await db.Trip.findByIdAndUpdate(req.params.id, req.body, {new: true});
-        return res.redirect(`/trips/${updatedTrip._id}`)
+        
+        return res.redirect(`/trips/${updatedTrip._id}`);
+         
     } catch (err) {
         return res.send(err);
     };
@@ -115,21 +117,10 @@ router.delete("/:id", async (req, res) => {
    
     try {
         await db.Trip.findByIdAndDelete(req.params.id);
-        return res.redirect("/");
+        return res.redirect("/trip");
     } catch (err) {
         return res.send(err);
     }
-   
-    /*  db.Trip.findByIdAndDelete(req.params.id, function(err, deletedTrip){
-        if(err) return res.send(err);
-
-        dbTraveler.findById(deletedTrip.traveler, function(err, foundTraveler){
-            foundTraveler.trips.remove(deletedTrip);
-            foundTraveler.save();
-
-            return res.redirect("/trips");
-        });
-    }); */
 
 });
 
