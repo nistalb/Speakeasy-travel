@@ -55,10 +55,8 @@ router.post("/", (req, res) => {
 
         db.Trip.findById(createdTrip.traveler).exec(function(err, foundTraveler){
             if(err) return res.send(err);
-            foundTraveler.trips.push(createdTrip);
-            foundTraveler.save();
 
-            return res.redirect("/trips");
+            return res.redirect("/trip");
         });
     });
     
