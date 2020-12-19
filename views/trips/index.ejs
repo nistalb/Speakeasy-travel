@@ -11,7 +11,8 @@
     <ul>
         <li>
                 <a href="/traveler">Traveler page</a>
-                
+                <a href="/trip/new">Add trip</a>
+
         </li>
     </ul>
     <main>
@@ -19,10 +20,16 @@
         <ul>
           <% trip.forEach(trip => { %>
           <li>
-            <a href="/trips/<%= trip._id %>"> <%= trip.name %> </a>
+            <a href="/trip/<%= trip._id %>"> <%= trip.name %> </a>
           </li>
           <% }) %>
         </ul>
+        <p>
+          <a href="/trip/<%= trip._id %>/edit ">Edit</a>
+        <form action="/trip/<%= trip._id %>?_method=DELETE" method=POST>
+            <input type="submit" value="Delete">
+        </form>
+        </p>
   
         <% if(trip.length === 0) { %>
         <p>There are no trips available yet.</p>

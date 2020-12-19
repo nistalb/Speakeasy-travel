@@ -8,24 +8,18 @@
 <body>
     <h1>trips edit page</h1>
 
-
-    <a href="/trips">trips</a>
-    <h2>Edit <%= .title %></h2>
-      <form action="/articles/<%= article._id %>?_method=PUT" method="POST">
-        <p>
-          <input
-            type="text"
-            name="title"
-            placeholder="Title"
-            value="<%= article.title %>"
-          />
-        </p>
-        <p>
-          <textarea type="text" name="body" placeholder="Body">
-<%= article.body %></textarea
-          >
-        </p>
-        <input type="submit" value="Update Article" />
-      </form>
+    <form action="/trip/<%= trip._id %>?_method=PUT" method="POST">
+      <input type="text" name="name" value = "<%= trip.name %> ">
+      <input type="text" name="bio" value= "<%= trip.dateStart %> ">
+      <input type="text" name="name" value = "<%= trip.dateEnd %> ">
+      <input type="text" name="bio" value= "<%= trip.activities %> ">
+      <input type="text" name="name" value = "<%= trip.notes %> ">
+      <input type="text" name="bio" value= "<%= trip.location %> ">
+      <input type="text" name="name" value = "<%= trip.budget %> ">
+      <input type="text" name="bio" value= "<%= trip.pictures %> ">
+      <input type="text" name="name" value = "<%= trip.db.traveler.find({createdBy:req.session.currentUser.byId}) %> ">
+      <input type="submit" value="Update">
+  </form>
+    
 </body>
 </html>
