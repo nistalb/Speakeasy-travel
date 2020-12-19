@@ -15,27 +15,24 @@
 
         </li>
     </ul>
-    <main>
+    
         <h2>List of trips</h2>
+        <% if(!trip.length) { %>
+          <p>There are no trips available yet.</p>
+          <% } else {%>
         <ul>
           <% trip.forEach(trip => { %>
-          <li>
-            <a href="/trip/<%= trip._id %>"> <%= trip.name %> </a>
-          </li>
+            <a href="/trip/<%= trip._id %>"> 
+              <li>
+              <%= trip.name %> 
+              </li>
+            </a>
           <% }) %>
         </ul>
         <p>
-          <a href="/trip/<%= trip._id %>/edit ">Edit</a>
-        <form action="/trip/<%= trip._id %>?_method=DELETE" method=POST>
-            <input type="submit" value="Delete">
-        </form>
-        </p>
-  
-        <% if(trip.length === 0) { %>
-        <p>There are no trips available yet.</p>
-        <% } %>
-      </main>
 
+      </p>
+      <% } %> 
    
       
 </body>

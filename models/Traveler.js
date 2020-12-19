@@ -6,7 +6,7 @@ const travelerSchema = new mongoose.Schema({
     name: {type: String, required: true},
     bio: String,
     address: {street: String, city: String, state: String, country: String},
-    //trips: []   add reference from trips
+    trips: [ {type: mongoose.Schema.Types.ObjectId, ref: "Trip"} ],   
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"

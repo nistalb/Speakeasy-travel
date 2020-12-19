@@ -24,77 +24,84 @@ const db = require("../models");
 
 //index
 router.get("/", async (req, res) => {
+    
     try {
-        const trip = await db.Trip.find( {createdBy: req.session.currentUser.id});
+        const allTrips = await db.Trip.find({createdBy: req.session.currentUser.id});
 
-        const context = {trip: trip};
+        const context = {trip: allTrips};
         console.log(context);
         return res.render("trips/index", context);
     } catch (err) {
         return res.send(err);
-    }; 
+    };   
   
 });
 
 //new
 router.get("/new", (req, res) => {
-    db.Trip.find({createdBy: req.session.currentUser.id}, function(err, foundTrips){
-        if (err) return res.send(err);
+    
+    res.render("trips/new");
+}); 
 
-        const context = {
-            trips: foundTrips,
-        };
-        res.render("trips/new", context);
-    });
-});
 
 //create
-router.post("/", (req, res) => {
-    db.Trip.create(req.body, function(err, createdTrip){
-        if (err) return res.send(err);
-
-        db.Trip.findById(createdTrip.traveler).exec(function(err, foundTraveler){
-            if(err) return res.send(err);
-
-            return res.redirect("/trip");
-        });
-    });
+router.post("/", async (req, res) => {
     
+    try{
+        req.body.createdBy = req.session.currentUser.id;
+        await db.Trip.create(req.body);
+        return res.redirect("/trip");
+    } catch (err) {
+        return res.send (err)
+    };
 });
 
 //show
 router.get("/:id", async (req, res) => {
+    
     try {
         const foundTrip = await db.Trip.findById(req.params.id);
 
-        const context = {picture: foundPic};
+        const context = {trip: foundTrip};
         return res.render("trips/show", context);
 
-    
     } catch(err) {
         return res.send(err);
-    }
+    };
 });
 
 //edit
-router.get("/:id/edit", (req, res) =>{
-    db.Trip.findById(req.params.id, function(err, foundTrip){
-        if (err) return res.send(err);
+router.get("/:id/edit", async (req, res) =>{
 
-        const context = {trip: foundTrip};
-        res.render("trips/edit", context);
-    });
-
+    try{
+        const foundTrip = await db.Trip.findById(req.params.id);
+        const context = { trip: foundTrip };
+        return res.render("trips/edit", context);
+    } catch (err) {
+        return res.send(err)
+    };
 });
 
 //update
-router.put("/:id", (req, res) => {
-    db.Trip.findByIdAndUpdate(
+router.put("/:id", async (req, res) => {
+    
+    try {
+        console.log(req.body);
+        console.log(req.params.id);
+        const updatedTrip = await db.Trip.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        
+        return res.redirect(`/trips/${updatedTrip._id}`);
+         
+    } catch (err) {
+        return res.send(err);
+    };
+    
+    /* db.Trip.findByIdAndUpdate(
         req.params.id,
         {
             $set: {
                 ...req.body,
-            },
+            }
         },
         { new: true},
         function(err, updatedTrip){
@@ -102,21 +109,18 @@ router.put("/:id", (req, res) => {
 
             return res.redirect(`/trips/${updatedTrip._id}`);
         }
-    );
+    ); */
 });
 
 //delete
-router.delete("/:id", (req, res) => {
-    db.Trip.findByIdAndDelete(req.params.id, function(err, deletedTrip){
-        if(err) return res.send(err);
-
-        dbTraveler.findById(deletedTrip.traveler, function(err, foundTraveler){
-            foundTraveler.trips.remove(deletedTrip);
-            foundTraveler.save();
-
-            return res.redirect("/trips");
-        });
-    });
+router.delete("/:id", async (req, res) => {
+   
+    try {
+        await db.Trip.findByIdAndDelete(req.params.id);
+        return res.redirect("/trip");
+    } catch (err) {
+        return res.send(err);
+    }
 
 });
 
