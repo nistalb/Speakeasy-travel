@@ -10,14 +10,14 @@
 
     <form action="/trip/<%= trip._id %>?_method=PUT" method="POST">
       <input type="text" name="name" value = "<%= trip.name %> ">
-      <input type="text" name="bio" value= "<%= trip.dateStart %> ">
-      <input type="text" name="name" value = "<%= trip.dateEnd %> ">
-      <input type="text" name="bio" value= "<%= trip.activities %> ">
-      <input type="text" name="name" value = "<%= trip.notes %> ">
-      <input type="text" name="bio" value= "<%= trip.location %> ">
-      <input type="text" name="name" value = "<%= trip.budget %> ">
-      <input type="text" name="bio" value= "<%= trip.pictures %> ">
-      <input type="text" name="name" value = "<%= trip.db.traveler.find({createdBy:req.session.currentUser.byId}) %> ">
+      <input type="text" name="dateStart" value= "<%= trip.dateStart %> ">
+      <input type="text" name="dateEnd" value = "<%= trip.dateEnd %> ">
+      <input type="text" name="activities" value= "<%= trip.activities %> ">
+      <input type="text" name="notes" value = "<%= trip.notes %> ">
+      <input type="text" name="location" value= "<%= trip.location %> ">
+      <input type="text" name="budget" value = "<%= trip.budget %> ">
+      <input type="text" name="img" value= "<%= trip.img %> ">
+      
       <input type="submit" value="Update">
   </form>
     
