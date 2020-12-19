@@ -7,9 +7,15 @@
 </head>
 <body>
     <h1>you are on the index page</h1>
+        
+        <% if (!traveler.length) { %>
+            <a href="/traveler/new">Enter New User Information</a>
+        <% } else {%>
+    
         <p><%= traveler[0].name %> </p>
         <p><%= traveler[0].bio %> </p>
 
         <a href="/traveler/<%= traveler[0]._id %>/edit ">Edit</a>
+        <% } %> 
 </body>
 </html>
