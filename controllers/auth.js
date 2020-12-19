@@ -27,6 +27,7 @@ router.post("/register", async (req, res) => {
         req.body.password = hash;
         const newUser = await db.User.create(req.body);
 
+        
         return res.redirect("/login");
 
     } catch (err) {

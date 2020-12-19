@@ -24,41 +24,60 @@ const db = require("../models");
 
 //index
 router.get("/", async (req, res) => {
+    
     try {
-        const trip = await db.Trip.find( {createdBy: req.session.currentUser.id});
+        const allTrips = await db.Trip.find({});
 
-        const context = {trip: trip};
+        const context = {trip: allTrips};
         console.log(context);
         return res.render("trips/index", context);
     } catch (err) {
         return res.send(err);
-    }; 
+    };   
   
 });
 
 //new
 router.get("/new", (req, res) => {
-    db.Trip.find({createdBy: req.session.currentUser.id}, function(err, foundTrips){
+    
+    db.Traveler.find({createdBy: req.session.currentUser.id}, function(err, foundTraveler){
         if (err) return res.send(err);
 
         const context = {
-            trips: foundTrips,
-        };
+            traveler: foundTraveler,
+        };  
         res.render("trips/new", context);
-    });
+     }); 
 });
 
 //create
 router.post("/", (req, res) => {
-    db.Trip.create(req.body, function(err, createdTrip){
+    
+    db.Trip.create(req.body, (err, createdTrip) => {
         if (err) return res.send(err);
+        console.log(createdTrip);
 
-        db.Trip.findById(createdTrip.traveler).exec(function(err, foundTraveler){
-            if(err) return res.send(err);
+        db.Traveler.findById(createdTrip.cereatedTrip).exec(function(err, foundTraveler){
+            if (err) return res.send(err)
+            console.log(foundTraveler);
+            foundTraveler.trips.push(createdTrip);
+            foundTraveler.save();
 
             return res.redirect("/trip");
         });
-    });
+    })
+
+    /* try {
+        req.body.createdTrip = 
+        db.Trip.create(req.body, function(err, createdTrip){
+        if (err) return res.send(err);
+        console.log(createdTrip);
+        db.Traveler.findById(createdTrip.trips).exec(function(err, foundTraveler){
+            if(err) return res.send(err);
+        } catch (err) {
+            return res.send(err)
+        } */
+    
     
 });
 

@@ -4,7 +4,7 @@ const Picture = require("./Picture");
 const PictureSchema = mongoose.model("Picture").schema;
 // schema
 const tripSchema = new mongoose.Schema(
-    {   name: String,
+    {   name: { type: String, required: true},
         dateStart: Date,
         dateEnd: Date,
         body: String,
@@ -16,7 +16,7 @@ const tripSchema = new mongoose.Schema(
 
         createdTrip: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
+            ref: "Traveler"
         }
 
     },
