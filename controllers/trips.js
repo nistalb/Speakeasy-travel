@@ -45,15 +45,23 @@ router.get("/new", (req, res) => {
 
 
 //create
-router.post("/", async (req, res) => {
-    
-    try{
+router.post("/", (req, res) => {
+        
         req.body.createdBy = req.session.currentUser.id;
-        await db.Trip.create(req.body);
-        return res.redirect("/trip");
-    } catch (err) {
-        return res.send (err)
-    };
+        db.Trip.create(req.body, function (err, createdTrip) {
+            if (err) return res.send(err);
+            console.log(createdTrip);
+            
+            //NOTE the code below is to push the trip data into the traveler model, it is not currently working
+            /* db.Traveler.find({createdBy: req.session.currentUser.id}).exec( function(err, foundTraveler) {
+                if (err) return res.send(err);
+                console.log(foundTraveler);
+                foundTraveler.trips.push(createdTrip);
+                foundTraveler.save(); */
+
+                return res.redirect("/trip");
+           /*  }); */
+        });
 });
 
 //show
@@ -84,7 +92,7 @@ router.get("/:id/edit", async (req, res) =>{
 
 //update
 router.put("/:id", async (req, res) => {
-    
+    //NOTE update is not currenty working even though it should be
     try {
         console.log(req.body);
         console.log(req.params.id);
