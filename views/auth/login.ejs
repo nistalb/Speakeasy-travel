@@ -6,7 +6,27 @@
     <title>Login</title>
 </head>
 <body>
-    <h1>You are on the login page!</h1>
+    <style>
+        /* Default height for small devices */
+        #intro-example {
+          height: 400px;
+        }
+    
+        /* Height for devices larger than 992px */
+        @media (min-width: 992px) {
+          #intro-example {
+            height: 600px;
+          }
+        }
+      </style>
+    
+    <div class="background-login"
+    style="background-image: url('https://i.imgur.com/PbCMWlc.jpg');
+    background-size: cover;
+    "
+    >
+    </div>
+    <h1>Login and start exploring</h1>
 
     <form action="/login" method="post">
         <p>
