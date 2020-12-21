@@ -52,15 +52,13 @@ router.post("/", (req, res) => {
             if (err) return res.send(err);
             console.log(createdTrip);
             
-            //NOTE the code below is to push the trip data into the traveler model, it is not currently working
-            /* db.Traveler.find({createdBy: req.session.currentUser.id}).exec( function(err, foundTraveler) {
+            db.Traveler.find({createdBy: req.session.currentUser.id}).exec( function(err, foundTraveler) {
                 if (err) return res.send(err);
-                console.log(foundTraveler);
-                foundTraveler.trips.push(createdTrip);
-                foundTraveler.save(); */
+                foundTraveler[0].trips.push(createdTrip);
+                foundTraveler[0].save(); 
 
                 return res.redirect("/trip");
-           /*  }); */
+            });
         });
 });
 
@@ -93,31 +91,14 @@ router.get("/:id/edit", async (req, res) =>{
 //update
 router.put("/:id", async (req, res) => {
     //NOTE update is not currenty working even though it should be
-    try {
-        console.log(req.body);
-        console.log(req.params.id);
+    try {        
         const updatedTrip = await db.Trip.findByIdAndUpdate(req.params.id, req.body, {new: true});
-        
-        return res.redirect(`/trips/${updatedTrip._id}`);
-         
-    } catch (err) {
-        return res.send(err);
-    };
     
-    /* db.Trip.findByIdAndUpdate(
-        req.params.id,
-        {
-            $set: {
-                ...req.body,
-            }
-        },
-        { new: true},
-        function(err, updatedTrip){
-            if(err) return res.send(err);
-
-            return res.redirect(`/trips/${updatedTrip._id}`);
-        }
-    ); */
+        return res.redirect(`/trip/${updatedTrip._id}`);
+    
+    } catch (err) {
+        return res.send(`${err}, error`);
+    }; 
 });
 
 //delete
