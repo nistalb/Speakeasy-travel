@@ -69,7 +69,7 @@
    
     <h1>Welcome</h1>
     
-        <div style="margin-left: 5px; color: white; background-color: rgba(0,0,0,0.7); max-width: fit-content;";   
+        <div style="margin-left: 5px; color: white; padding: 5px; background-color: rgba(0,0,0,0.7); max-width: fit-content;";   
           <% if (!traveler.length) { %>
             <p> <a href="/traveler/new">Enter</a> some information so that we know more about you. </p>
           <% } else {%>
@@ -79,13 +79,13 @@
           <p>City: <%= traveler[0].address.city %> </p>
           <p>State: <%= traveler[0].address.state %> </p>
           <p>Country: <%= traveler[0].address.country %> </p>
-          
+          <a href="/traveler/<%= traveler[0]._id %>/edit "; style="margin-left: 5px;">Edit</a>
         </div>
         <div class="clearfix">
           <img src="..." class="col-md-6 float-md-end mb-3 ms-md-3" alt="...">
         </div>
 
-        <a href="/traveler/<%= traveler[0]._id %>/edit "; style="margin-left: 5px;">Edit</a>
+        
         <form action="/traveler/<%= traveler[0]._id %>?_method=DELETE" method=POST>
             <input type="submit" value="Delete Account">
         </form>  
