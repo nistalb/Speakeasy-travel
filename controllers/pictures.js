@@ -3,6 +3,10 @@ const express = require("express");
 const { db } = require("../models/Trip");
 
 const router = express.Router();
+// for image uploads per user
+//const multer = require("multer");
+//const cloudinary = require("cloudinary");
+//const cloudinaryStorage = require("multer-storage-cloudinary");
 
 //require the data
 //const db = require("../models");
