@@ -20,6 +20,43 @@
           }
         }
       </style>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container-fluid">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarExample01"
+        aria-controls="navbarExample01"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarExample01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li>
+            <a class="nav-link" href="/traveler">Traveler</a>
+          </li>
+          <li>
+            <a class="nav-link" href="/trips">Trips</a>
+          </li>
+          <li>
+            <form action="/logout?_method=DELETE" method="POST">
+                <input type="submit" value="logout" style="margin-left: 1100px; margin-top: 4px; ">
+            </li>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div
     
     <div
     id="intro-example"
@@ -30,24 +67,21 @@
   >
     <h1>You are on the traveler edit page</h1>
 
-    <form action="/traveler/<%= traveler._id %>?_method=PUT" method="POST">
+    <form ction="/traveler/<%= traveler._id %>?_method=PUT" method="POST">
         <p>
-            <input type="text" name="name" value = "<%= traveler.name %> ">
+            <input type="text" name="name" placeholder="name" value = "<%= traveler.name %> ">
         </p>
         <p>
-            <input type="text" name="bio" value="<%= traveler.bio %> ">
+            <input type="text" name="bio" placeholder="bio" value="<%= traveler.bio %> ">
         </p>
         <p>
-            <input type="text" name="address.street" value = "<%= traveler.address.street %> ">
+            <input type="text" name="address.city" placeholder="city" value = "<%= traveler.address.city %> ">
         </p>
         <p>
-            <input type="text" name="address.city" value = "<%= traveler.address.city %> ">
+            <input type="text" name="address.state" placeholder="state" value = "<%= traveler.address.state %> ">
         </p>
         <p>
-            <input type="text" name="address.state" value = "<%= traveler.address.state %> ">
-        </p>
-        <p>
-            <input type="text" name="address.country" value = "<%= traveler.address.country %> ">
+            <input type="text" name="address.country" placeholder="country" value = "<%= traveler.address.country %> ">
         </p>
 
         <input type="submit" value="Update">
