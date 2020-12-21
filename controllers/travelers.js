@@ -56,7 +56,7 @@ router.get("/:id/edit", async (req, res) =>{
 router.put("/:id", async (req, res) => {
 
     try {
-        
+        console.log("I have updated traveler");
         await db.Traveler.findByIdAndUpdate(req.params.id, req.body, {new: true});
         return res.redirect("/traveler")
     } catch (err) {

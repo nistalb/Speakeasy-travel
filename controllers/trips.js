@@ -90,7 +90,7 @@ router.get("/:id/edit", async (req, res) =>{
 
 //update
 router.put("/:id", async (req, res) => {
-    //NOTE update is not currenty working even though it should be
+    
     try {        
         const updatedTrip = await db.Trip.findByIdAndUpdate(req.params.id, req.body, {new: true});
     
