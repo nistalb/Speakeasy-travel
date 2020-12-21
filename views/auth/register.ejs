@@ -6,20 +6,42 @@
     <title>Register</title>
 </head>
 <body>
-    <h1>Welcome to the register Page!</h1>
+    <style>
+        /* Default height for small devices */
+        #intro-example {
+          height: 600px;
+        }
+    
+        /* Height for devices larger than 992px */
+        @media (min-width: 992px) {
+          #intro-example {
+            height: 679px;
+          }
+        }
+      </style>
+    
+    <div
+    id="intro-example"
+    class="p-5 text-center bg-image"
+    style="background-image: url('https://cdn.pixabay.com/photo/2016/01/09/18/27/old-1130731_1280.jpg');
+    background-size: cover;
+    "
+  >
+        <h1>Welcome to the register Page!</h1>
 
-    <form action="/register" method="post">
-        <p>
-            <input type="text" name="username" placeholder="username" required>
-        </p>
-        <p>
-            <input type="email" name="email" placeholder="email@host.com" required>
-        </p>
-        <p>
-            <input type="password" name="password" placeholder="password" required minlength="8">
-        </p>
-            <input type="submit" value="Submit">
-        </p>
-    </form>
+        <form action="/register" method="post">
+            <p>
+                <input type="text" name="username" placeholder="username" required>
+            </p>
+            <p>
+                <input type="email" name="email" placeholder="email@host.com" required>
+            </p>
+            <p>
+                <input type="password" name="password" placeholder="password" required minlength="8">
+            </p>
+                <input type="submit" value="Submit">
+            </p>
+        </form>
+    </div>
 </body>
 </html>  
