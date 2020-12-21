@@ -91,31 +91,14 @@ router.get("/:id/edit", async (req, res) =>{
 //update
 router.put("/:id", async (req, res) => {
     //NOTE update is not currenty working even though it should be
-    try {
-        console.log(req.body);
-        console.log(req.params.id);
+    try {        
         const updatedTrip = await db.Trip.findByIdAndUpdate(req.params.id, req.body, {new: true});
-        console.log(updatedTrip);
-        return res.redirect(`/trips/${updatedTrip._id}`);
-         
-    } catch (err) {
-        return res.send(err);
-    };
     
-    /* db.Trip.findByIdAndUpdate(
-        req.params.id,
-        {
-            $set: {
-                ...req.body,
-            }
-        },
-        { new: true},
-        function(err, updatedTrip){
-            if(err) return res.send(err);
-
-            return res.redirect(`/trips/${updatedTrip._id}`);
-        }
-    ); */
+        return res.redirect(`/trip/${updatedTrip._id}`);
+    
+    } catch (err) {
+        return res.send(`${err}, error`);
+    }; 
 });
 
 //delete
