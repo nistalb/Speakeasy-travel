@@ -52,15 +52,13 @@ router.post("/", (req, res) => {
             if (err) return res.send(err);
             console.log(createdTrip);
             
-            //NOTE the code below is to push the trip data into the traveler model, it is not currently working
-            /* db.Traveler.find({createdBy: req.session.currentUser.id}).exec( function(err, foundTraveler) {
+            db.Traveler.find({createdBy: req.session.currentUser.id}).exec( function(err, foundTraveler) {
                 if (err) return res.send(err);
-                console.log(foundTraveler);
-                foundTraveler.trips.push(createdTrip);
-                foundTraveler.save(); */
+                foundTraveler[0].trips.push(createdTrip);
+                foundTraveler[0].save(); 
 
                 return res.redirect("/trip");
-           /*  }); */
+            });
         });
 });
 
@@ -97,7 +95,7 @@ router.put("/:id", async (req, res) => {
         console.log(req.body);
         console.log(req.params.id);
         const updatedTrip = await db.Trip.findByIdAndUpdate(req.params.id, req.body, {new: true});
-        
+        console.log(updatedTrip);
         return res.redirect(`/trips/${updatedTrip._id}`);
          
     } catch (err) {
