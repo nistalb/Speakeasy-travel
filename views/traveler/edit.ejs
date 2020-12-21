@@ -36,7 +36,7 @@
       <div class="collapse navbar-collapse" id="navbarExample01">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="/">Home</a>
+            <a class="nav-link" aria-current="page" href="/">SpeakeasyTravel</a>
           </li>
           <li>
             <a class="nav-link" href="#">About</a>
@@ -45,14 +45,12 @@
             <a class="nav-link" href="/traveler">Traveler</a>
           </li>
           <li>
-            <a class="nav-link" href="/trips">Trips</a>
-          </li>
-          <li>
-            <form action="/logout?_method=DELETE" method="POST">
-                <input type="submit" value="logout" style="margin-left: 1100px; margin-top: 4px; ">
-            </li>
+            <a class="nav-link" href="/trip">Trips</a>
           </li>
         </ul>
+        <form class="form-inline my-2 my-lg-0" action="/logout?_method=DELETE" method="POST">
+          <input type="submit" value="logout" >
+         </form> 
       </div>
     </div>
   </nav>
@@ -65,27 +63,48 @@
     background-size: cover;
     "
   >
-    <h1>You are on the traveler edit page</h1>
+  <div class="mask" style="background-color: rgba(0,0,0,0.7)">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <div class="text-white">  
+        <h1 class="mb-3">Please input some information about yourself so other travelers can get to know you.</h1>
 
-    <form ction="/traveler/<%= traveler._id %>?_method=PUT" method="POST">
-        <p>
-            <input type="text" name="name" placeholder="name" value = "<%= traveler.name %> ">
-        </p>
-        <p>
-            <input type="text" name="bio" placeholder="bio" value="<%= traveler.bio %> ">
-        </p>
-        <p>
-            <input type="text" name="address.city" placeholder="city" value = "<%= traveler.address.city %> ">
-        </p>
-        <p>
-            <input type="text" name="address.state" placeholder="state" value = "<%= traveler.address.state %> ">
-        </p>
-        <p>
-            <input type="text" name="address.country" placeholder="country" value = "<%= traveler.address.country %> ">
-        </p>
-
-        <input type="submit" value="Update">
-    </form>
+        <form action="/traveler/<%= traveler._id %>?_method=PUT" method="POST">
+          
+          <div class="mb-3 row">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="name" id="name" value = "<%= traveler.name %> " required>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="bio" class="col-sm-2 col-form-label">Bio</label>
+            <div class="col-sm-10">
+              <input class="form-control" name="bio" id="bio" value = "<%= traveler.bio %> ">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="city" class="col-sm-2 col-form-label">City</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="address.city" id="city" value = "<%= traveler.address.city %> ">
+            </div>
+          </div>  
+          <div class="mb-3 row">
+            <label for="state" class="col-sm-2 col-form-label">State</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="address.state" id="state" value = "<%= traveler.address.state %> ">
+            </div>
+          </div> 
+          <div class="mb-3 row">
+            <label for="country" class="col-sm-2 col-form-label">Country</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="address.country" id="country" value = "<%= traveler.address.country %> ">
+            </div>
+          </div>             
+          <button type="submit" class="btn btn-outline-light btn-lg mb-3">Update</button>
+        </form>
+    </div>
+    </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
 </body>
