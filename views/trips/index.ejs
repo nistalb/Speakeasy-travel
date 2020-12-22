@@ -55,28 +55,33 @@
   class="p-0 text-left bg-image"
   style="background-image: url('https://cdn.pixabay.com/photo/2014/08/15/11/29/beach-418742_1280.jpg');
   background-size: cover;
-  min-height: 97.3vh;
+  min-height: 96vh;
   
   "
 >
 <div style="
  color: white;
    background-color: rgba(0,0,0,0.7);
-    max-width: fit-content;" 
-    <h1>trips index</h1>
+    max-width: fit-content;
+    border-radius: 25%;
+    padding: 30px;
+    " 
+>
+    <h1>Here are your saved trips:</h1>
+  
 
         <% if(!trip.length) { %>
           <p>There are no trips available yet.</p>
           <% } else {%>
-        <ul>
+        <p>
           <% trip.forEach(trip => { %>
+        </p>
+        <p>
             <a class="btn btn-info" href="/trip/<%= trip._id %>"> 
-              <li>
               <%= trip.name %> 
-              </li>
             </a>
           <% }) %>
-        </ul>
+        </p>
         <p>
           Don't see any? Add your first trip!
       </p>
