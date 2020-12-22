@@ -52,21 +52,25 @@
   </nav>
   <div
   id="intro-example"
-  class="p-5 text-left bg-image"
+  class="p-0 text-left bg-image"
   style="background-image: url('https://cdn.pixabay.com/photo/2014/08/15/11/29/beach-418742_1280.jpg');
   background-size: cover;
-  padding: none;
+  min-height: 97.3vh;
+  
   "
 >
-  <div style="float:left; margin: none; color: white; padding: 5px; background-color: rgba(0,0,0,0.7); max-width: fit-content;">
-    <h1>Here are your trips!</h1>
+<div style="
+ color: white;
+   background-color: rgba(0,0,0,0.7);
+    max-width: fit-content;" 
+    <h1>trips index</h1>
 
         <% if(!trip.length) { %>
           <p>There are no trips available yet.</p>
           <% } else {%>
         <ul>
           <% trip.forEach(trip => { %>
-            <a href="/trip/<%= trip._id %>"> 
+            <a class="btn btn-info" href="/trip/<%= trip._id %>"> 
               <li>
               <%= trip.name %> 
               </li>
