@@ -56,7 +56,6 @@ router.get("/:id/edit", async (req, res) =>{
 router.put("/:id", async (req, res) => {
 
     try {
-        console.log("I have updated traveler");
         await db.Traveler.findByIdAndUpdate(req.params.id, req.body, {new: true});
         return res.redirect("/traveler")
     } catch (err) {
@@ -68,10 +67,10 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
 
     try {
-        console.log(req.params.id);
+        console.log("i have hit my delete route");
         await db.Traveler.findByIdAndDelete(req.params.id);
         //NOTE add a step to delete all trips associated with this traveler and the user data
-        await req.session.destroy();
+        req.session.destroy();
         return res.redirect("/");
 
     } catch (err) {

@@ -81,6 +81,10 @@
                 <a href="/trip">Add a new trip!</a>
               </li>
             </ul>
+            <!-- NOTE come back to move this button over to the right -->
+          <form style="padding-left: 60px;" action="/traveler/<%= traveler[0]._id %>?_method=DELETE" method="POST">
+            <input class="bg-warning text-dark" type="submit" value="Delete Account">
+        </form>
           </div>
   </div>
       
