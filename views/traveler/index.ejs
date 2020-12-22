@@ -62,20 +62,19 @@
   id="intro-example"
   class="p-5 text-left bg-image"
   style="background-image: url('https://cdn.pixabay.com/photo/2017/10/23/05/56/holiday-2880261_1280.jpg');
-  background-size: cover; "
+  background-size: cover; min-height: 96vh"
 >
-    <h1>Welcome</h1>
     
-        <div style="margin-left: 5px; color: white; padding: 5px; background-color: rgba(0,0,0,0.7); max-width: fit-content;";   
-          <% if (!traveler.length) { %>
+    
+        <div style="margin-left: 5px; color: white; padding: 5px; background-color: rgba(0,0,0,0.7); max-width: fit-content; border-radius: 10%; padding: 30px">  
+        <h1>Welcome <%= traveler[0].name %> </h1>  
+        <% if (!traveler.length) { %>
             <p> <a href="/traveler/new">Enter</a> some information so that we know more about you. </p>
           <% } else {%>
       
-          <p>Name: <%= traveler[0].name %> </p>
-          <p>Bio: <%= traveler[0].bio %> </p>
-          <p>City: <%= traveler[0].address.city %> </p>
-          <p>State: <%= traveler[0].address.state %> </p>
-          <p>Country: <%= traveler[0].address.country %> </p>
+          <p> <%= traveler[0].bio %> </p>
+          <p>My Home Base</p>
+          <p><%= traveler[0].address.city %>, <%= traveler[0].address.state %>, <%= traveler[0].address.country %> </p>
           <a href="/traveler/<%= traveler[0]._id %>/edit "; style="margin-left: 5px;">Edit</a>
           <a href="/trip">Add a new trip!</a>
 
