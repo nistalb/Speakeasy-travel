@@ -58,8 +58,15 @@ router.post("/login", async (req, res) => {
             username: foundUser.username
         };
 
-        res.redirect("/traveler");
-
+        //decide which page to login to
+        const traveler = await db.Traveler.find( {createdBy: req.session.currentUser.id});
+        console.log(traveler);
+        if (!traveler.length) {
+            return res.redirect("/traveler/new");
+        } else{
+            return res.redirect("/traveler");
+        }
+        
     } catch (err) {
         return res.send(err);
     };
