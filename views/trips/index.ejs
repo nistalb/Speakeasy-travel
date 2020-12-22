@@ -36,7 +36,7 @@
       <div class="collapse navbar-collapse" id="navbarExample01">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="/">Home</a>
+            <a class="nav-link navbar-brand" style="color: rgba(22,153,247,1)" href="#">SpeakeasyTravel</a>
           </li>
           <li>
             <a class="nav-link" href="#">About</a>
@@ -47,6 +47,7 @@
         </ul>
         <form class="form-inline my-2 my-lg-0" action="/logout?_method=DELETE" method="POST">
           <input type="submit" value="logout" >
+        </form>
       </div>
     </div>
   </nav>
@@ -72,6 +73,10 @@
 
         <% if(!trip.length) { %>
           <p>There are no trips available yet.</p>
+          <p>
+            Don't see any? Add your first trip!
+          </p>
+          <p><a class="btn btn-info" href="/trip/new" role="button">Add a new trip</a></p> 
           <% } else {%>
         <p>
           <% trip.forEach(trip => { %>
@@ -82,10 +87,8 @@
             </a>
           <% }) %>
         </p>
-        <p>
-          Don't see any? Add your first trip!
-      </p>
-      <p><a class="btn btn-info" href="/trip/new" role="button">Add a new trip</a></p> 
+        
+        <p><a class="btn btn-info" href="/trip/new" role="button">Add a new trip</a></p>
   </div>
       <% } %> 
       
