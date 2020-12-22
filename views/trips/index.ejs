@@ -47,6 +47,7 @@
         </ul>
         <form class="form-inline my-2 my-lg-0" action="/logout?_method=DELETE" method="POST">
           <input type="submit" value="logout" >
+        </form>
       </div>
     </div>
   </nav>
@@ -72,6 +73,10 @@
 
         <% if(!trip.length) { %>
           <p>There are no trips available yet.</p>
+          <p>
+            Don't see any? Add your first trip!
+          </p>
+          <p><a class="btn btn-info" href="/trip/new" role="button">Add a new trip</a></p> 
           <% } else {%>
         <p>
           <% trip.forEach(trip => { %>
@@ -82,10 +87,8 @@
             </a>
           <% }) %>
         </p>
-        <p>
-          Don't see any? Add your first trip!
-      </p>
-      <p><a class="btn btn-info" href="/trip/new" role="button">Add a new trip</a></p> 
+        
+        <p><a class="btn btn-info" href="/trip/new" role="button">Add a new trip</a></p>
   </div>
       <% } %> 
       
