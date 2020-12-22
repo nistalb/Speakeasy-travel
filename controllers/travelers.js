@@ -70,7 +70,7 @@ router.delete("/:id", async (req, res) => {
     try {
         console.log(req.params.id);
         await db.Traveler.findByIdAndDelete(req.params.id);
-        //NOTE add a step to delete all trips associated with this traveler
+        //NOTE add a step to delete all trips associated with this traveler and the user data
         return res.redirect("/");
 
     } catch (err) {
