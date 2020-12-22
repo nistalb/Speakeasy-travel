@@ -64,9 +64,7 @@
   style="background-image: url('https://cdn.pixabay.com/photo/2017/10/23/05/56/holiday-2880261_1280.jpg');
   background-size: cover; min-height: 96vh"
 >
-    
-    
-        <div style="margin-left: 5px; color: white; padding: 5px; background-color: rgba(0,0,0,0.7); max-width: fit-content; border-radius: 10%; padding: 30px">  
+        <div style="margin-left: 5px; color: white; padding: 5px; background-color: rgba(0,0,0,0.7); max-width: fit-content; border-radius: 10%; padding: 30px; min-height: 50vh;">  
         <h1>Welcome <%= traveler[0].name %> </h1>  
         <% if (!traveler.length) { %>
             <p> <a href="/traveler/new">Enter</a> some information so that we know more about you. </p>
@@ -75,8 +73,17 @@
           <p> <%= traveler[0].bio %> </p>
           <p>My Home Base</p>
           <p><%= traveler[0].address.city %>, <%= traveler[0].address.state %>, <%= traveler[0].address.country %> </p>
-          <a href="/traveler/<%= traveler[0]._id %>/edit "; style="margin-left: 5px;">Edit</a>
-          <a href="/trip">Add a new trip!</a>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">Options</button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+             <li>
+               <a href="/traveler/<%= traveler[0]._id %>/edit "; style="margin-left: 5px;">Edit Traveler Info</a>
+              </li>
+              <li>
+                <a href="/trip">Add a new trip!</a>
+              </li>
+            </ul>
+          </div>
 
           <div class="position-absolute bottom-0 end-0">
             <form action="/traveler/<%= traveler[0]._id %>?_method=DELETE" method=POST>
