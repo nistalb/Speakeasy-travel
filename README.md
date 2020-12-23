@@ -31,10 +31,10 @@ If the user is on the user SHOW page and clicks on the delete button, the user a
 This will be a travel blog that allows users to log in using unique credentials.  Once in the website the users can create, read, updated, and delete trips they have taken.  The mongo database will use four models, Traveler, Trip, User, and Picture.  The Traveler and Trip will be referenced in each other.  User will be referenced in Traveler.  Picture will be embedded in Trip.     
 
 # Entity Relationship Diagram
-![ERD](erd.svg)
+![ERD](./planning_docs/erd.svg)
 
 # Wireframe
-![wireframe](wireframe.svg)
+![wireframe](./planning_docs/wireframe.svg)
 
 # Icebox
 - Share blogs with other couples and merge trips or be able to link to another persons blog and or send a link request.
