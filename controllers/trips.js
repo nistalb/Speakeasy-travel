@@ -5,9 +5,6 @@ const router = express.Router();
 
 const db = require("../models");
 
-//require the data
-//const db = require("../models");
-
 // Rest Routes
 /*
  * Index - GET - /articles  - Presentational - respond with all articles
@@ -34,12 +31,10 @@ router.get("/", async (req, res) => {
     } catch (err) {
         return res.send(err);
     };   
-  
 });
 
 //new
 router.get("/new", (req, res) => {
-    
     res.render("trips/new");
 }); 
 
@@ -93,9 +88,7 @@ router.put("/:id", async (req, res) => {
     
     try {        
         const updatedTrip = await db.Trip.findByIdAndUpdate(req.params.id, req.body, {new: true});
-    
         return res.redirect(`/trip/${updatedTrip._id}`);
-    
     } catch (err) {
         return res.send(`${err}, error`);
     }; 
