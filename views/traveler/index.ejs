@@ -69,6 +69,11 @@
               <p> <%= traveler[0].bio %> </p>
       <p>My Home Base is 
       <%= traveler[0].address.city %> <%= traveler[0].address.state %>, <%= traveler[0].address.country %> </p>
+      <% if (!traveler[0].trips.length) { %>
+        <p>I have not been on any trips yet.</p>
+      <% } else {%> 
+        <p>I have been on <%= traveler[0].trips.length %> trips!</p>
+      <% } %> 
     </div>
       <div class="row" style="margin-left: 5px; color: white; padding: 5px; background-color: rgba(0,0,0,0.7); max-width: 40vw; padding: 30px; border-radius: 0 0 30px 30px; ">   
         <div class="col-sm">
