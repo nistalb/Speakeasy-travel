@@ -75,10 +75,10 @@ app.get("/", function(req,res){
 app.use("/", controllers.auth);
 
 // traveler controller
-app.use("/traveler", controllers.traveler);
+app.use("/traveler", authRequired, controllers.traveler);
 
 // trip controller
-app.use("/trip", controllers.trip);
+app.use("/trip", authRequired, controllers.trip);
 
 //picture controller
 app.use("/picture", controllers.picture)
