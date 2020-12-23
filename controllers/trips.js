@@ -75,8 +75,13 @@ router.get("/:id", async (req, res) => {
 router.get("/:id/edit", async (req, res) =>{
 
     try{
+        
         const foundTrip = await db.Trip.findById(req.params.id);
-        const context = { trip: foundTrip };
+        dateStart = new Date(foundTrip.dateStart).toISOString().split('T')[0];
+        dateEnd = new Date(foundTrip.dateEnd).toISOString().split('T')[0];
+        
+        const context = { trip: foundTrip, dateStart, dateEnd };
+        
         return res.render("trips/edit", context);
     } catch (err) {
         return res.send(err)
