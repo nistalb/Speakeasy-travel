@@ -93,11 +93,9 @@ router.delete("/:id", async (req, res) => {
     try {
         
         const foundTrip = await db.Trip.findByIdAndDelete(req.params.id);
-        console.log("I have found trip")
-        console.log(foundTrip)
+                
         //delete the trip from the traveler data
         const foundTraveler = await db.Traveler.find( {createdBy: req.session.currentUser.id});
-        console.log(foundTraveler)
         foundTraveler[0].trips.remove(foundTrip);
         foundTraveler[0].save();
 
