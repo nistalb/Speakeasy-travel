@@ -20,8 +20,8 @@ app.set("view engine", "ejs"); // allows for leaving off the extension and makes
 /* == Middleware == */
 
 // server public as static files
-// express.static(directory location absolute)
-// app.use(express.static(_dirname + "/public"));
+//express.static(directory, location, absolute);
+//app.use(express.static(_dirname + "/public"));
 
 // body data middleware
 app.use(express.urlencoded({extended: true}));
