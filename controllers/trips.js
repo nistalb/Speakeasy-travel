@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
         const allTrips = await db.Trip.find({createdBy: req.session.currentUser.id});
 
         const context = {trip: allTrips};
-        console.log(context);
+        
         return res.render("trips/index", context);
     } catch (err) {
         return res.send(err);
@@ -33,8 +33,7 @@ router.post("/", (req, res) => {
     req.body.createdBy = req.session.currentUser.id;
     db.Trip.create(req.body, function (err, createdTrip) {
         if (err) return res.send(err);
-        console.log(createdTrip);
-        
+                
         //push trip into traveler
         db.Traveler.find({createdBy: req.session.currentUser.id}).exec( function(err, foundTraveler) {
             if (err) return res.send(err);
@@ -92,7 +91,14 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
    
     try {
-        await db.Trip.findByIdAndDelete(req.params.id);
+        
+        const foundTrip = await db.Trip.findByIdAndDelete(req.params.id);
+                
+        //delete the trip from the traveler data
+        const foundTraveler = await db.Traveler.find( {createdBy: req.session.currentUser.id});
+        foundTraveler[0].trips.remove(foundTrip);
+        foundTraveler[0].save();
+
         return res.redirect("/trip");
     } catch (err) {
         return res.send(err);
