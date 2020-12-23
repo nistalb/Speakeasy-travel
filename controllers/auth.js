@@ -37,7 +37,7 @@ router.post("/register", async (req, res) => {
 
 //login
 router.get("/login", (req, res) => {
-    res.render("auth/login");
+    res.render("auth/login", {message: ""});
 });
 
 //verify login information
@@ -46,11 +46,11 @@ router.post("/login", async (req, res) => {
     try {
         const foundUser = await db.User.findOne({ email: req.body.email });
 
-        if (!foundUser) return res.render("auth/login");
+        if (!foundUser) return res.render("auth/login", {message: "Account not found.  Please register"});
 
         const match = await bcrypt.compare(req.body.password, foundUser.password);
 
-        if (!match) return res.render("auth/login");
+        if (!match) return res.render("auth/login", {message: "Password or Email invalid."});
 
         //create user session
         req.session.currentUser = {
@@ -60,7 +60,7 @@ router.post("/login", async (req, res) => {
 
         //decide which page to login to
         const traveler = await db.Traveler.find( {createdBy: req.session.currentUser.id});
-        console.log(traveler);
+        
         if (!traveler.length) {
             return res.redirect("/traveler/new");
         } else{
