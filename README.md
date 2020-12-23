@@ -5,9 +5,9 @@ A simple travel blog where friends, family, and others can share experiences in 
 
 # User story:
 
-A user navigates to the blog HOME page.  If the user has a login they input their unique username and password, after which they are taken to their SHOW page.  If the user is new they are prompted to enter a username, email, and password.  Usernames and emails must be unique.  After creating their username and password the user is taken to the NEW user page.  On the NEW user page the user enters their: name, a short bio blurb, address, and photo.  After creating their user information the user is taken to their user SHOW page where they can can delete user, navigate to the EDIT user form, or navigate to the trips INDEX page. 
+A user navigates to the blog HOME page.  If the user has a login they input their unique username and password, after which they are taken to their SHOW page.  If the user is new they are prompted to enter a username, email, and password.  Usernames and emails must be unique.  After creating their username and password the user is taken to the login page.  After logging in the new user is taken to the NEW traveler page.  On the NEW traveler page the user enters their: name, a short bio blurb, and address.  After creating their traveler information the user is taken to their traveler SHOW page where they can can delete user, navigate to the EDIT user form, or navigate to the trips INDEX page. 
 
-On the trips INDEX page the user will see their trips.  They will also see navigation buttons that will allow them to view, or add trips.  There will be navigation buttons to go to the user SHOW page.
+On the trips INDEX page the user will see their trips.  They will also see navigation buttons that will allow them to view, or add trips.  There will be navigation buttons to go to the traveler SHOW page.
 
 If there are no trips on the INDEX page then the user will see text that says no trips are available to view, please create a trip.  If the user clicks on the new trip button then they will be taken to the NEW trip page.
 
