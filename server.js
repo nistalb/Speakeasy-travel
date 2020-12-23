@@ -4,8 +4,6 @@ const methodOverride = require("method-override");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
-
-
 /* == Internal Modules == */
 const controllers = require("./controllers");
 
@@ -25,8 +23,6 @@ app.set("view engine", "ejs"); // allows for leaving off the extension and makes
 
 // body data middleware
 app.use(express.urlencoded({extended: true}));
-
-
 
 // method override middleware
 app.use(methodOverride("_method"));
@@ -82,8 +78,6 @@ app.use("/trip", authRequired, controllers.trip);
 
 //picture controller
 app.use("/picture", controllers.picture)
-
-
 
 /* == Server Listener == */
 app.listen(PORT, function(){
