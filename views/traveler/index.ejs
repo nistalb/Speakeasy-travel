@@ -63,31 +63,27 @@
   class="p-5 text-left bg-image"
   style="background-image: url('https://cdn.pixabay.com/photo/2017/10/23/05/56/holiday-2880261_1280.jpg');
   background-size: cover; min-height: 96vh"
->
-        <div style="margin-left: 5px; color: white; padding: 5px; background-color: rgba(0,0,0,0.7); max-width: 40vw; border-radius: 10%; padding: 30px; min-height: 50vh;">  
-        <h1>Hi!  I'm <%= traveler[0].name %> </h1>  
-                  <p> <%= traveler[0].bio %> </p>
-          <p>My Home Base is 
-          <%= traveler[0].address.city %> <%= traveler[0].address.state %>, <%= traveler[0].address.country %> </p>
-         
-         <!-- NOTE take away dropdown and place links at bottome of the grey area -->
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">Options</button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-             <li>
-               <a href="/traveler/<%= traveler[0]._id %>/edit "; style="margin-left: 5px;">Edit Traveler Info</a>
-              </li>
-              <li>
-                <a href="/trip">Add a new trip!</a>
-              </li>
-              <li>
-                <form style="padding-left: 60px;" action="/traveler/<%= traveler[0]._id %>?_method=DELETE" method="POST">
-                  <input class="bg-warning text-dark" type="submit" value="Delete Account">
-                </form>
-              </li>
-            </ul>
-        </form>
-          </div>
+  >
+    <div style="margin-left: 5px; color: white; padding: 5px; background-color: rgba(0,0,0,0.7); max-width: 40vw; border-radius: 30px 30px 0 0; padding: 30px; min-height: 50vh;">  
+    <h1>Hi!  I'm <%= traveler[0].name %> </h1>  
+              <p> <%= traveler[0].bio %> </p>
+      <p>My Home Base is 
+      <%= traveler[0].address.city %> <%= traveler[0].address.state %>, <%= traveler[0].address.country %> </p>
+    </div>
+      <div class="row" style="margin-left: 5px; color: white; padding: 5px; background-color: rgba(0,0,0,0.7); max-width: 40vw; padding: 30px; border-radius: 0 0 30px 30px; ">   
+        <div class="col-sm">
+          <a href="/traveler/<%= traveler[0]._id %>/edit "; style="color: white">Edit Traveler Info</a>
+        </div>
+        <div class="col-sm">  
+          <a href="/trip" style="color: white">Add a new trip!</a>
+        </div>
+        <div class="col-sm">
+          <form action="/traveler/<%= traveler[0]._id %>?_method=DELETE" method="POST">
+            <input class="bg-warning text-dark" type="submit" value="Delete Account">
+          </form>
+        </div>
+      </div>
+    
   </div>
       
        

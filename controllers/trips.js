@@ -5,18 +5,6 @@ const router = express.Router();
 
 const db = require("../models");
 
-// Rest Routes
-/*
- * Index - GET - /articles  - Presentational - respond with all articles
- * New - GET - /articles/new  - Presentational Form - a page with a form to create a new article
- * Show - GET - /articles/:id  - Presentational - respond with specific article by id
- * Create - Post - /articles  - Functional - recieve data from new route to create a article
- * Edit - GET - /articles/:id/edit  - Presentational Form - respond with a form prefilled with article data
- * Update - PUT - /articles/:id  - Functional - recieve data from edit to update a specific article
- * Delete - DELETE - /articles/:id  - Functional - Deletes article by id from request
- */
-
-
 /* Create routes */
 
 //index
@@ -42,19 +30,20 @@ router.get("/new", (req, res) => {
 //create
 router.post("/", (req, res) => {
         
-        req.body.createdBy = req.session.currentUser.id;
-        db.Trip.create(req.body, function (err, createdTrip) {
+    req.body.createdBy = req.session.currentUser.id;
+    db.Trip.create(req.body, function (err, createdTrip) {
+        if (err) return res.send(err);
+        console.log(createdTrip);
+        
+        //push trip into traveler
+        db.Traveler.find({createdBy: req.session.currentUser.id}).exec( function(err, foundTraveler) {
             if (err) return res.send(err);
-            console.log(createdTrip);
-            
-            db.Traveler.find({createdBy: req.session.currentUser.id}).exec( function(err, foundTraveler) {
-                if (err) return res.send(err);
-                foundTraveler[0].trips.push(createdTrip);
-                foundTraveler[0].save(); 
+            foundTraveler[0].trips.push(createdTrip);
+            foundTraveler[0].save(); 
 
-                return res.redirect("/trip");
-            });
+            return res.redirect("/trip");
         });
+    });
 });
 
 //show
