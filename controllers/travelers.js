@@ -67,9 +67,9 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
 
     try {
-        console.log("i have hit my delete route");
         await db.Traveler.findByIdAndDelete(req.params.id);
-        //NOTE add a step to delete all trips associated with this traveler and the user data
+        await db.Trip.remove({createdBy: req.session.currentUser.id});
+        await db.User.remove({_id: req.session.currentUser.id});
         req.session.destroy();
         return res.redirect("/");
 
