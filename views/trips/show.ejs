@@ -70,27 +70,27 @@
           <div class="col-sm float-left;" style="
           color: white;
           background-color: rgba(0,0,0,0.7);
-          max-width: fit-content;
+          max-width: 600px;
           border-radius: 30px;
           padding: 30px;">
             <h1 style="text-align: center;"><%= trip.name %></h1>
             <br>
-              <%= trip.dateStart %>
+              <p>TRIP START: <%= trip.dateStart %></p>
             </br>  
             <br>
-              <%= trip.dateEnd %>
+              <p>TRIP END: <%= trip.dateEnd %></p>
             </br>
             <br>
-              <%= trip.activities %>
+              <p>ACTIVITIES: <%= trip.activities %></p>
             </br>
             <br>
-              <%= trip.notes %>
+              <p>THINGS TO NOTE: <%= trip.notes %></p>
             </br>
             <br>
-              <%= trip.location %>
+              <p>LOCATION: <%= trip.location %></p>
             </br>
             <br>
-              <%= trip.budget %>
+              <p>BUDGET: $<%= trip.budget %></p>
             </br>
             <br>
               <a class="btn btn-info" role="button" href="/trip/<%= trip._id %>/edit ">Edit Trip</a>
@@ -109,7 +109,7 @@
             padding: 30px;
             margin-left: 200px;
             ">
-            <div id='map' style='width: 400px; height: 600px;'></div>
+            <div id='map' style='width: 400px; height: 100%; min-width: 500px;'></div>
           </div>
         </div>
       </div>
@@ -125,7 +125,7 @@
   var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
   console.log(mapboxClient);
     mapboxClient.geocoding.forwardGeocode({
-    query: 'The Big Island, Hawaii',
+    query: '<%= trip.location %>',
     limit: 2
   })
     .send()
@@ -136,9 +136,14 @@
     container: 'map',
     style: 'mapbox://styles/mapbox/satellite-streets-v11',
     center: match.features[0].center,
-    zoom:7
+    zoom:11,
     });
-  });
+ // [lat, lng] coordinates to place the marker at
+        var marker = new mapboxgl.Marker()
+  .setLngLat([match.features[0].center[0],match.features[0].center[1]]) // [lng, lat] coordinates to place the marker at
+  .addTo(map); // add the marker to the map
+    })
+   
 
   </script>
 
