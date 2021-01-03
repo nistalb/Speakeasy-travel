@@ -1,11 +1,13 @@
 // require mongoose
 const mongoose = require("mongoose");
 
+require("dotenv").config();
+
 // connnection string
-const MONGODB_URI = "mongodb+srv://SEI:SEI1234@sei.woeti.mongodb.net/SEI?retryWrites=true&w=majority"
+const dburl = process.env.MONGODB_URI || "mongodb://localhost:27017/speakeasydb"
 
 // connect
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(dburl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

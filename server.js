@@ -9,9 +9,10 @@ const controllers = require("./controllers");
 
 /* == Instanced Modules == */
 const app = express();
+require("dotenv").config();  //gives access to .env file
 
 /* == Configuration == */
-const PORT = 4000;
+const PORT = process.env.PORT;
 
 app.set("view engine", "ejs"); // allows for leaving off the extension and makes the server more efficient
 
@@ -32,9 +33,9 @@ app.use(
     session({
         //set the store to the MongoStore we required
         store: new MongoStore({
-            url: "mongodb+srv://SEI:SEI1234@sei.woeti.mongodb.net/SEI?retryWrites=true&w=majority"
+            url: process.env.MONGODB_URI || "mongodb://localhost:27017/speakeasydb"
         }),
-        secret: "I know what you did last summer",
+        secret: process.env.SECRET,
         resave: false,
         saveUninitialized: false,
         cookie: {
@@ -80,4 +81,4 @@ app.use("/trip", authRequired, controllers.trip);
 app.use("/picture", controllers.picture)
 
 /* == Server Listener == */
-app.listen(process.env.PORT || 3000)
+app.listen(PORT)
