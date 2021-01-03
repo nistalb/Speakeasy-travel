@@ -32,7 +32,7 @@ app.use(
     session({
         //set the store to the MongoStore we required
         store: new MongoStore({
-            url: "mongodb://localhost:27017/speakeasydb"
+            url: "mongodb+srv://SEI:SEI1234@sei.woeti.mongodb.net/SEI?retryWrites=true&w=majority"
         }),
         secret: "I know what you did last summer",
         resave: false,
@@ -80,6 +80,4 @@ app.use("/trip", authRequired, controllers.trip);
 app.use("/picture", controllers.picture)
 
 /* == Server Listener == */
-app.listen(PORT, function(){
-    console.log(`Travel app is live at http://localhost:${PORT}/`)
-});
+app.listen(process.env.PORT || 3000)

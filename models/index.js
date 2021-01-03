@@ -2,10 +2,10 @@
 const mongoose = require("mongoose");
 
 // connnection string
-const dbUrl = "mongodb://localhost:27017/speakeasydb"
+const MONGODB_URI = "mongodb+srv://SEI:SEI1234@sei.woeti.mongodb.net/SEI?retryWrites=true&w=majority"
 
 // connect
-mongoose.connect(dbUrl, {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
